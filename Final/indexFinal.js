@@ -1,12 +1,21 @@
 var coloredBox = document.getElementById("colorBackG");
 coloredBox.style.backgroundColor = 'White';
 
-
 var fname = document.getElementById('fname');
 var lname = document.getElementById('lname');
 var birth = document.getElementById('birth')
 var salary = document.getElementById('salary')
-var gender = document.getElementById('selGender');
+var gender = document.getElementsByName('gender');
+var selectedGender = []
+for (var i = 0, length = gender.length; i < length; i++)
+{
+ if (gender[i].checked)
+ {
+  selectedGender.push(gender[i].value)
+  // only one radio can be logically checked, don't check the rest
+  break;
+ }
+}
 var hobbies = document.querySelectorAll('.hobbies:checked')
 var hobbiesArray = Array.prototype.slice.call(hobbies);
 var color = document.getElementById('colorList') // .selectedindex
@@ -22,15 +31,23 @@ for (var i=0;i<els.length;i++){
   }
 }
 
-var choicesCountry = [];
-var els = document.getElementsByClassName('choiceCountry');
-for (var i=0;i<els.length;i++){
-  if ( els[i].checked ) {
-    choicesCountry.push(els[i].value);
-  }
-}
+// var choicesCountry = [];
+// var els = document.getElementsByClassName('choiceCountry');
+// for (var i=0;i<els.length;i++){
+//   if ( els[i].checked ) {
+//     choicesCountry.push(els[i].value);
+//   }
+// }
 
-console.log(choices);
+var choicesCountry = new Array();
+function getSelCountries() {
+    alert('NewFunction')
+    var mySelectedCountries = document.getElementById('mySelectCountries');
+    if (mySelectedCountries.options[mySelectedCountries.selectedIndex].value!=null){
+        choicesCountry.push(mySelectedCountries.options[mySelectedCountries.selectedIndex].value)
+    }
+    alert(String(choicesCountry))
+}
 
 function KeepCount() {
     
@@ -113,48 +130,62 @@ function alertFunc() {
     alert('Please Enter 30 Chars at Least') }
     
 function saveData() {
-    if (document.querySelectorAll('.hobbies:checked').length !==3 ) {
-        preventDefault()
-        return false;
-    }
+    // if (document.querySelectorAll('.hobbies:checked').length !==3 ) {
+    //     preventDefault()
+    //     return false;
+    // }
+
     // The localStorage needs to have only one key and its value that contains all the input 
     var myObj = {
         field1: fname.value,
         field2: lname.value,
         field3: birth.value,
         field4: salary.value,
-        field5: gender.value,
+        field5: String(selectedGender),
         field6: choices,
         field7: color.value,
-        field8: choicesCountry,
+        field8: String(choicesCountry),
         field9: textArea.value
     }    
     window.localStorage.setItem(localStorage.length+1, JSON.stringify(myObj))
 }   
-    var i = 0
-    while(i !== localStorage.length){
-        i++;
-        console.log(i)
-        var table = document.getElementById('myTable');
-        var row = table.insertRow(i);
-        for(j=1; j < 10; j++) {
-            var jSON = localStorage.getItem(i)
-            var cell = row.insertCell(j-1)
-            var parsedjSON = JSON.parse(jSON)
-            var A = "field"+String(j)
-            var final = parsedjSON[A]
-            var node = document.createTextNode(final)
-            node.innerHTML = String(final)
-            cell.innerHTML = node.innerHTML
-        }
-        var btn = document.createElement('input');
-        cell.appendChild(btn)
-        btn.type = 'button'
-        btn.value="Delete"
-        btn.name="Delete"
-        btn.id = "deleteButton"+String(i)
-        document.getElementById("deleteButton"+String(i)).onclick = () => {
-            localStorage.removeItem(i)
-            location.reload()
+
+var i = 0
+while(i !== localStorage.length){
+    i++;
+    var table = document.getElementById('myTable');
+    var row = table.insertRow(i);
+    for(j=1; j < 10; j++) {
+        var jSON = localStorage.getItem(i)
+        var cell = row.insertCell(j-1)
+        var parsedjSON = JSON.parse(jSON)
+        var A = "field"+String(j)
+        var final = parsedjSON[A]
+        var node = document.createTextNode(final)
+        node.innerHTML = String(final)
+        cell.innerHTML = node.innerHTML
+        if(cell.innerHTML == "Red") {
+            cell.style.backgroundColor = "Red"
+        } else if(node.innerHTML == "Blue") {
+            cell.style.backgroundColor = "Blue"
+        } else if(node.innerHTML == "Yellow") {
+            cell.style.backgroundColor = "Yellow"
+        } else if(node.innerHTML == "Black") {
+            cell.style.backgroundColor = "Black"
+        } else if(node.innerHTML == "Green") {
+            cell.style.backgroundColor = "Green"
+        } else if(node.innerHTML == "White") {
+            cell.style.backgroundColor = "White"
         }
     }
+    var btn = document.createElement('input');
+    cell.appendChild(btn)
+    btn.type = 'button'
+    btn.value="Delete"
+    btn.name="Delete"
+    btn.id = "deleteButton"+String(i)
+    document.getElementById("deleteButton"+String(i)).onclick = () => {
+        localStorage.removeItem(i)
+        location.reload()
+    }
+}
