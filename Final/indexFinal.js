@@ -23,13 +23,13 @@ var countries = document.querySelectorAll('.checkboxC:checked')
 var countriesArray = Array.prototype.slice.call(countries);
 var textArea = document.getElementById('textInput');
 
-var choices = [];
-var els = document.getElementsByClassName('hobbies');
-for (var i=0;i<els.length;i++){
-  if ( els[i].checked ) {
-    choices.push(els[i].value);
-  }
-}
+// var choices = [];
+// var els = document.getElementsByClassName('hobbies');
+// for (var i=0;i<els.length;i++){
+//   if ( els[i].checked ) {
+//     choices.push(els[i].value);
+//   }
+// }
 
 // var choicesCountry = [];
 // var els = document.getElementsByClassName('choiceCountry');
@@ -47,6 +47,19 @@ function getSelCountries() {
         choicesCountry.push(mySelectedCountries.options[mySelectedCountries.selectedIndex].value)
     }
     alert(String(choicesCountry))
+}
+
+var choicesOfHobby = new Array();
+function getSelHobbies() {
+    alert('NewFunction')
+    var mySelectedHobbies = document.getElementsByClassName('hobbies');
+    for (i=0; i<mySelectedHobbies.length; i++){
+        if (mySelectedHobbies[i].checked){
+            choicesOfHobby.push(mySelectedHobbies[i].value)
+        }
+    }
+    
+    alert(String(choicesOfHobby))
 }
 
 function KeepCount() {
@@ -142,12 +155,13 @@ function saveData() {
         field3: birth.value,
         field4: salary.value,
         field5: String(selectedGender),
-        field6: choices,
+        field6: String(choicesOfHobby),
         field7: color.value,
         field8: String(choicesCountry),
         field9: textArea.value
     }    
     window.localStorage.setItem(localStorage.length+1, JSON.stringify(myObj))
+
 }   
 
 var i = 0
@@ -156,7 +170,7 @@ while(i !== localStorage.length){
     var table = document.getElementById('myTable');
     var row = table.insertRow(i);
     for(j=1; j < 10; j++) {
-        var jSON = localStorage.getItem(i)
+        var jSON = window.localStorage.getItem(i)
         var cell = row.insertCell(j-1)
         var parsedjSON = JSON.parse(jSON)
         var A = "field"+String(j)
