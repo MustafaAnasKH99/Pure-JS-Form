@@ -142,6 +142,9 @@ function alertFunc() {
     if(document.getElementById('textInput').value.length < 30)
     alert('Please Enter 30 Chars at Least') }
     
+    const toPush = [];
+    
+
 function saveData() {
     // if (document.querySelectorAll('.hobbies:checked').length !==3 ) {
     //     preventDefault()
@@ -159,26 +162,28 @@ function saveData() {
         field7: color.value,
         field8: String(choicesCountry),
         field9: textArea.value
-    }    
+    }  
+    
     console.log('New Input')
     console.log(myObj)
     console.log(myObj)
     console.log(myObj)
 
-    var result1 = Object.keys(myObj).map(function(key) {
-        return [String(key), myObj[key]];
-    });
+        // var result1 = Object.keys(myObj).map(function(key) {
+        //     return [String(key), myObj[key]];
+        // });
 
-    console.log('An array of New Input')
-    console.log(result1);
-    console.log(result1);
-    console.log(result1);
-    
-    let arr = new Array()
-    console.log('New Empty Array')
-    console.log(arr)
-    console.log(arr)
-    console.log(arr)
+        // console.log('An array of New Input')
+        // console.log(result1);
+        // console.log(result1);
+        // console.log(result1);
+        
+        // let arr = new Array()
+        // console.log('New Empty Array')
+        // console.log(arr)
+        // console.log(arr)
+        // console.log(arr)
+        const currentData = window.localStorage.getItem('data')
     if (window.localStorage.length == 0) {
         arr = JSON.stringify(myObj);
        window.localStorage.setItem('data', arr);
@@ -190,55 +195,62 @@ function saveData() {
 
         // let retreivedData = window.localStorage.getItem('data')
         // let modifiedData = retreivedData + 'This is coming'
-        let exisData = window.localStorage.getItem('data')
-        let toAddData = JSON.stringify(myObj)
-        let finalData = JSON.stringify(exisData + toAddData)
-        let finalDataObject = JSON.parse(finalData)
-        console.log('Is it good?')
-        console.log(finalData)
-        console.log(finalData)
-        console.log(finalDataObject)
-        // window.localStorage.setItem('data', finalDataObject)
-        arr = JSON.parse(window.localStorage.getItem("data"));
-        console.log('Existing Data')
-        console.log(arr)
-        console.log(arr)
-        console.log(arr)
-
-        const newC = Object.assign(arr, myObj)
-        console.log('Assigned Objects')
-        console.log(newC)
-        console.log(newC)
-        console.log(newC)
-
-        var result2 = Object.keys(arr).map(function(key) {
-            return [String(key), arr[key]];
-        });
+        toPush.push(currentData)
+        console.log('an object of the current data')
+        console.log(currentData)
+        console.log(currentData)
+        console.log(currentData)
+        
         console.log('an array of the existing data')
-        console.log(result2)
-        console.log(result2)
-        console.log(result2)
+        console.log(toPush)
+        console.log(toPush)
+        console.log(toPush)
+        console.log(myObj)
+        console.log('try')
+        console.log(myObj[0])
+        toPush.push(JSON.stringify(myObj))
+        console.log(myObj)
+        console.log(myObj)
+        console.log('an array of the old data + new input')
+        console.log(toPush)
+        console.log(toPush)
+        console.log(toPush)
+        window.localStorage.setItem('data', toPush)
+            // let exisData = window.localStorage.getItem('data')
+            // let toAddData = JSON.stringify(myObj)
+            // let finalData = JSON.stringify(exisData + toAddData)
+            // let finalDataObject = JSON.parse(finalData)
+            // console.log('Is it good?')
+            // console.log(finalData)
+            // console.log(finalData)
+            // console.log(finalDataObject)
+            // // window.localStorage.setItem('data', finalDataObject)
+            // arr = JSON.parse(window.localStorage.getItem("data"));
+            // console.log('Existing Data')
+            // console.log(arr)
+            // console.log(arr)
+            // console.log(arr)
 
-        let final = result2.push.apply(result2, result1)
-        console.log('Array to push')
-        console.log(final)
-        console.log(final)
-        console.log(final)
-        var fenale = result2 +  result1
-        console.log(fenale)
-        console.log(fenale)
-        console.log(fenale)
+            // for(i=0; i>localStorage.length; i++){
+            //     const finalObj = {i: newD}
+            // }
+            // const newD = {1:{...arr}, 2:{...myObj}}
+            // const stringifiedNewD = JSON.stringify(newD)
+            // window.localStorage.setItem('data', stringifiedNewD)
+            // console.log('Here Is The localStorage Format')
+            // console.log(stringifiedNewD)
+            // console.log(stringifiedNewD)
+            // console.log('Spread Final Object')
+            // console.log(newD)
+            // console.log(newD)
+            // console.log(newD)
 
-        // arr.push(myObj);
-        // console.log('Existing + New ata')
-        // console.log(arr)
-        // console.log(arr)
-        // console.log(arr)
-        // const arrPush = JSON.stringfy(arr)
-        // console.log(arrPush)
-        // console.log(arrPush)
-        // console.log(arrPush)
-        // window.localStorage.setItem("data",fenale);
+        // var result2 = Object.keys(arr).map(function(key) {
+        //     return [String(key), arr[key]];
+        // });
+        // console.log('an array of the existing data')
+        console.log('parsed storage')
+        console.log(JSON.parse(window.localStorage.getItem('data')))
     }
 
 }   
