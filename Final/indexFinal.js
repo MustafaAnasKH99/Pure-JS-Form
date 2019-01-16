@@ -160,46 +160,125 @@ function saveData() {
         field8: String(choicesCountry),
         field9: textArea.value
     }    
-    window.localStorage.setItem(localStorage.length+1, JSON.stringify(myObj))
+    console.log('New Input')
+    console.log(myObj)
+    console.log(myObj)
+    console.log(myObj)
+
+    var result1 = Object.keys(myObj).map(function(key) {
+        return [String(key), myObj[key]];
+    });
+
+    console.log('An array of New Input')
+    console.log(result1);
+    console.log(result1);
+    console.log(result1);
+    
+    let arr = new Array()
+    console.log('New Empty Array')
+    console.log(arr)
+    console.log(arr)
+    console.log(arr)
+    if (window.localStorage.length == 0) {
+        arr = JSON.stringify(myObj);
+       window.localStorage.setItem('data', arr);
+    } else {
+    // window.localStorage.setItem(localStorage.length+1, JSON.stringify(myObj))
+        // arr = localStorage.getItem('data');
+        // arr.push(myObj);
+        // localStorage.setItem('data', arr);
+
+        // let retreivedData = window.localStorage.getItem('data')
+        // let modifiedData = retreivedData + 'This is coming'
+        let exisData = window.localStorage.getItem('data')
+        let toAddData = JSON.stringify(myObj)
+        let finalData = JSON.stringify(exisData + toAddData)
+        let finalDataObject = JSON.parse(finalData)
+        console.log('Is it good?')
+        console.log(finalData)
+        console.log(finalData)
+        console.log(finalDataObject)
+        // window.localStorage.setItem('data', finalDataObject)
+        arr = JSON.parse(window.localStorage.getItem("data"));
+        console.log('Existing Data')
+        console.log(arr)
+        console.log(arr)
+        console.log(arr)
+
+        const newC = Object.assign(arr, myObj)
+        console.log('Assigned Objects')
+        console.log(newC)
+        console.log(newC)
+        console.log(newC)
+
+        var result2 = Object.keys(arr).map(function(key) {
+            return [String(key), arr[key]];
+        });
+        console.log('an array of the existing data')
+        console.log(result2)
+        console.log(result2)
+        console.log(result2)
+
+        let final = result2.push.apply(result2, result1)
+        console.log('Array to push')
+        console.log(final)
+        console.log(final)
+        console.log(final)
+        var fenale = result2 +  result1
+        console.log(fenale)
+        console.log(fenale)
+        console.log(fenale)
+
+        // arr.push(myObj);
+        // console.log('Existing + New ata')
+        // console.log(arr)
+        // console.log(arr)
+        // console.log(arr)
+        // const arrPush = JSON.stringfy(arr)
+        // console.log(arrPush)
+        // console.log(arrPush)
+        // console.log(arrPush)
+        // window.localStorage.setItem("data",fenale);
+    }
 
 }   
 
-var i = 0
-while(i !== localStorage.length){
-    i++;
-    var table = document.getElementById('myTable');
-    var row = table.insertRow(i);
-    for(j=1; j < 10; j++) {
-        var jSON = window.localStorage.getItem(i)
-        var cell = row.insertCell(j-1)
-        var parsedjSON = JSON.parse(jSON)
-        var A = "field"+String(j)
-        var final = parsedjSON[A]
-        var node = document.createTextNode(final)
-        node.innerHTML = String(final)
-        cell.innerHTML = node.innerHTML
-        if(cell.innerHTML == "Red") {
-            cell.style.backgroundColor = "Red"
-        } else if(node.innerHTML == "Blue") {
-            cell.style.backgroundColor = "Blue"
-        } else if(node.innerHTML == "Yellow") {
-            cell.style.backgroundColor = "Yellow"
-        } else if(node.innerHTML == "Black") {
-            cell.style.backgroundColor = "Black"
-        } else if(node.innerHTML == "Green") {
-            cell.style.backgroundColor = "Green"
-        } else if(node.innerHTML == "White") {
-            cell.style.backgroundColor = "White"
-        }
-    }
-    var btn = document.createElement('input');
-    cell.appendChild(btn)
-    btn.type = 'button'
-    btn.value="Delete"
-    btn.name="Delete"
-    btn.id = "deleteButton"+String(i)
-    document.getElementById("deleteButton"+String(i)).onclick = () => {
-        localStorage.removeItem(i)
-        location.reload()
-    }
-}
+// var i = 0
+// while(i !== localStorage.length){
+//     i++;
+//     var table = document.getElementById('myTable');
+//     var row = table.insertRow(i);
+//     for(j=1; j < 10; j++) {
+//         var jSON = window.localStorage.getItem(i)
+//         var cell = row.insertCell(j-1)
+//         var parsedjSON = JSON.parse(jSON)
+//         var A = "field"+String(j)
+//         var final = parsedjSON[A]
+//         var node = document.createTextNode(final)
+//         node.innerHTML = String(final)
+//         cell.innerHTML = node.innerHTML
+//         if(cell.innerHTML == "Red") {
+//             cell.style.backgroundColor = "Red"
+//         } else if(node.innerHTML == "Blue") {
+//             cell.style.backgroundColor = "Blue"
+//         } else if(node.innerHTML == "Yellow") {
+//             cell.style.backgroundColor = "Yellow"
+//         } else if(node.innerHTML == "Black") {
+//             cell.style.backgroundColor = "Black"
+//         } else if(node.innerHTML == "Green") {
+//             cell.style.backgroundColor = "Green"
+//         } else if(node.innerHTML == "White") {
+//             cell.style.backgroundColor = "White"
+//         }
+//     }
+//     var btn = document.createElement('input');
+//     cell.appendChild(btn)
+//     btn.type = 'button'
+//     btn.value="Delete"
+//     btn.name="Delete"
+//     btn.id = "deleteButton"+String(i)
+//     document.getElementById("deleteButton"+String(i)).onclick = () => {
+//         localStorage.removeItem(i)
+//         location.reload()
+//     }
+// }
