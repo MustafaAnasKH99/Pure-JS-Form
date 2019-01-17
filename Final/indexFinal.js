@@ -173,18 +173,35 @@ function saveData() {
                 cell.style.backgroundColor = "White"
             }
         }
-        var btn = document.createElement('input');
-        cell.appendChild(btn)
-        btn.type = 'button'
-        btn.value="Delete"
-        btn.name="Delete"
-        btn.id = "deleteButton"+String(i)
-        btn.onclick = (i) => {
+
+        var delBtn = document.createElement('input');
+        cell.appendChild(delBtn)
+        delBtn.type = 'button'
+        delBtn.value="Delete"
+        delBtn.name="Delete"
+        delBtn.id = "deleteButton"+String(i)
+        delBtn.onclick = (i) => {
             console.log(i)
             let newStorage = JSON.parse(window.localStorage.getItem('data'))
             newStorage.splice(i,1) 
             window.localStorage.setItem('data', JSON.stringify(newStorage))
             location.reload()
+        }
+
+        var editBtn = document.createElement('input');
+        cell.appendChild(editBtn)
+        editBtn.type="button"
+        editBtn.value="Edit"
+        editBtn.name="Edit"
+        editBtn.id = "editButton"+String(i)
+        editBtn.onclick = () => {
+            alert('Here edit goes')
+            var saveButton = document.createElement('button')
+            saveButton.innerHTML="Save"
+            cell.appendChild(saveButton)
+            saveButton.onclick = () => {alert('saved')
+            cell.removeChild(saveButton)
+        }
         }
     i = i + 1;
     }
