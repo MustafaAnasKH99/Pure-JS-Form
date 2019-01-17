@@ -129,10 +129,10 @@ function saveData() {
         field2: lname.value,
         field3: birth.value,
         field4: salary.value,
-        field5: String(selectedGender),
-        field6: String(choicesOfHobby),
+        field5: selectedGender,
+        field6: choicesOfHobby,
         field7: color.value,
-        field8: String(choicesCountry),
+        field8: choicesCountry,
         field9: textArea.value  }
 
         if (window.localStorage.length == 0) {
@@ -195,13 +195,34 @@ function saveData() {
         editBtn.name="Edit"
         editBtn.id = "editButton"+String(i)
         editBtn.onclick = () => {
-            alert('Here edit goes')
+            console.log(i)
+            console.log(i)
+            console.log(i)
+            fname.value = to_limit_i[0].field1
+            lname.value = to_limit_i[0].field2
+            birth.value = to_limit_i[0].field3
+            salary.value = to_limit_i[0].field4
+            selectedGender = to_limit_i[0].field5
+            choicesOfHobby = to_limit_i[0].field6
+            color.value = to_limit_i[0].field7
+            choicesCountry = to_limit_i[0].field8
+            textArea.value = to_limit_i[0].field9
             var saveButton = document.createElement('button')
             saveButton.innerHTML="Save"
             cell.appendChild(saveButton)
-            saveButton.onclick = () => {alert('saved')
-            cell.removeChild(saveButton)
-        }
+            saveButton.onclick = () => 
+            {   to_limit_i[0].field1 = fname.value
+                to_limit_i[0].field2 = lname.value
+                to_limit_i[0].field3 = birth.value
+                to_limit_i[0].field4 = salary.value 
+                to_limit_i[0].field5 = String(selectedGender)
+                to_limit_i[0].field6 = choicesOfHobby
+                to_limit_i[0].field7 = color.value
+                to_limit_i[0].field8 = choicesCountry
+                to_limit_i[0].field9 = textArea.value     
+                cell.removeChild(saveButton)
+                window.localStorage.setItem('data', JSON.stringify(to_limit_i))
+                location.reload()   }
         }
     i = i + 1;
     }
