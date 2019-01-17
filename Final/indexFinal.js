@@ -146,12 +146,6 @@ function alertFunc() {
     
 
 function saveData() {
-    // if (document.querySelectorAll('.hobbies:checked').length !==3 ) {
-    //     preventDefault()
-    //     return false;
-    // }
-
-    // The localStorage needs to have only one key and its value that contains all the input 
     var myObj = {
         field1: fname.value,
         field2: lname.value,
@@ -162,98 +156,65 @@ function saveData() {
         field7: color.value,
         field8: String(choicesCountry),
         field9: textArea.value
-    }  
-    
-    console.log('New Input')
-    console.log(myObj)
-    console.log(myObj)
-    console.log(myObj)
-
-        // var result1 = Object.keys(myObj).map(function(key) {
-        //     return [String(key), myObj[key]];
-        // });
-
-        // console.log('An array of New Input')
-        // console.log(result1);
-        // console.log(result1);
-        // console.log(result1);
-        
-        // let arr = new Array()
-        // console.log('New Empty Array')
-        // console.log(arr)
-        // console.log(arr)
-        // console.log(arr)
-        const currentData = window.localStorage.getItem('data')
-    if (window.localStorage.length == 0) {
-        arr = JSON.stringify(myObj);
-       window.localStorage.setItem('data', arr);
-    } else {
-    // window.localStorage.setItem(localStorage.length+1, JSON.stringify(myObj))
-        // arr = localStorage.getItem('data');
-        // arr.push(myObj);
-        // localStorage.setItem('data', arr);
-
-        // let retreivedData = window.localStorage.getItem('data')
-        // let modifiedData = retreivedData + 'This is coming'
-        toPush.push(currentData)
-        console.log('an object of the current data')
-        console.log(currentData)
-        console.log(currentData)
-        console.log(currentData)
-        
-        console.log('an array of the existing data')
-        console.log(toPush)
-        console.log(toPush)
-        console.log(toPush)
-        console.log(myObj)
-        console.log('try')
-        console.log(myObj[0])
-        toPush.push(JSON.stringify(myObj))
-        console.log(myObj)
-        console.log(myObj)
-        console.log('an array of the old data + new input')
-        console.log(toPush)
-        console.log(toPush)
-        console.log(toPush)
-        window.localStorage.setItem('data', toPush)
-            // let exisData = window.localStorage.getItem('data')
-            // let toAddData = JSON.stringify(myObj)
-            // let finalData = JSON.stringify(exisData + toAddData)
-            // let finalDataObject = JSON.parse(finalData)
-            // console.log('Is it good?')
-            // console.log(finalData)
-            // console.log(finalData)
-            // console.log(finalDataObject)
-            // // window.localStorage.setItem('data', finalDataObject)
-            // arr = JSON.parse(window.localStorage.getItem("data"));
-            // console.log('Existing Data')
-            // console.log(arr)
-            // console.log(arr)
-            // console.log(arr)
-
-            // for(i=0; i>localStorage.length; i++){
-            //     const finalObj = {i: newD}
-            // }
-            // const newD = {1:{...arr}, 2:{...myObj}}
-            // const stringifiedNewD = JSON.stringify(newD)
-            // window.localStorage.setItem('data', stringifiedNewD)
-            // console.log('Here Is The localStorage Format')
-            // console.log(stringifiedNewD)
-            // console.log(stringifiedNewD)
-            // console.log('Spread Final Object')
-            // console.log(newD)
-            // console.log(newD)
-            // console.log(newD)
-
-        // var result2 = Object.keys(arr).map(function(key) {
-        //     return [String(key), arr[key]];
-        // });
-        // console.log('an array of the existing data')
-        console.log('parsed storage')
-        console.log(JSON.parse(window.localStorage.getItem('data')))
     }
-
-}   
+        if (window.localStorage.length == 0) {
+            toPush.push(myObj)
+            window.localStorage.setItem('data', JSON.stringify(toPush));
+            console.log(JSON.stringify(toPush))
+        } else {
+        const currentData = JSON.parse(window.localStorage.getItem('data'))
+        currentData.push(myObj)
+        window.localStorage.setItem('data', JSON.stringify(currentData))
+        }
+    }   
+    var i =0;
+    const to_limit_i = JSON.parse(localStorage.getItem('data'));
+    while (i !== to_limit_i.length) {
+        let table = document.getElementById('myTable')
+        let row = table.insertRow(i+1);
+        
+        for (j=1; j<10; j++) {
+            let data = window.localStorage.getItem('data');
+            var cell = row.insertCell(j-1)
+            let parsedData = JSON.parse(data)
+            let fieldName = 'field'+String(j)
+            let fieldValue = parsedData[i][fieldName]
+            let node = document.createTextNode(fieldValue)
+            node.innerHTML = String(fieldValue)
+            cell.innerHTML = node.innerHTML
+            if(cell.innerHTML == "Red") {
+                cell.style.backgroundColor = "Red"
+            } else if(node.innerHTML == "Blue") {
+                cell.style.backgroundColor = "Blue"
+            } else if(node.innerHTML == "Yellow") {
+                cell.style.backgroundColor = "Yellow"
+            } else if(node.innerHTML == "Black") {
+                cell.style.backgroundColor = "Black"
+            } else if(node.innerHTML == "Green") {
+                cell.style.backgroundColor = "Green"
+            } else if(node.innerHTML == "White") {
+                cell.style.backgroundColor = "White"
+            }
+        }
+        var btn = document.createElement('input');
+        cell.appendChild(btn)
+        btn.type = 'button'
+        btn.value="Delete"
+        btn.name="Delete"
+        btn.id = "deleteButton"+String(i)
+        document.getElementById("deleteButton"+String(i)).onclick = () => {
+        let z = 0;
+        // while(z !== to_limit_i.length){
+        //     delete to_limit_i[z]
+        //     currentData.push(to_limit_i)
+        //     window.localStorage.setItem('data', JSON.stringify(currentData))
+        //     console.log(to_limit_i[z])
+        //     z = z + 1
+        // }
+        location.reload()
+        }
+    i = i + 1;
+    }
 
 // var i = 0
 // while(i !== localStorage.length){
@@ -294,3 +255,4 @@ function saveData() {
 //         location.reload()
 //     }
 // }
+
