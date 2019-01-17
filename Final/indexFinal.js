@@ -23,43 +23,22 @@ var countries = document.querySelectorAll('.checkboxC:checked')
 var countriesArray = Array.prototype.slice.call(countries);
 var textArea = document.getElementById('textInput');
 
-// var choices = [];
-// var els = document.getElementsByClassName('hobbies');
-// for (var i=0;i<els.length;i++){
-//   if ( els[i].checked ) {
-//     choices.push(els[i].value);
-//   }
-// }
-
-// var choicesCountry = [];
-// var els = document.getElementsByClassName('choiceCountry');
-// for (var i=0;i<els.length;i++){
-//   if ( els[i].checked ) {
-//     choicesCountry.push(els[i].value);
-//   }
-// }
-
 var choicesCountry = new Array();
 function getSelCountries() {
-    alert('NewFunction')
     var mySelectedCountries = document.getElementById('mySelectCountries');
     if (mySelectedCountries.options[mySelectedCountries.selectedIndex].value!=null){
         choicesCountry.push(mySelectedCountries.options[mySelectedCountries.selectedIndex].value)
     }
-    alert(String(choicesCountry))
 }
 
 var choicesOfHobby = new Array();
 function getSelHobbies() {
-    alert('NewFunction')
     var mySelectedHobbies = document.getElementsByClassName('hobbies');
     for (i=0; i<mySelectedHobbies.length; i++){
         if (mySelectedHobbies[i].checked){
             choicesOfHobby.push(mySelectedHobbies[i].value)
         }
     }
-    
-    alert(String(choicesOfHobby))
 }
 
 function KeepCount() {
@@ -137,7 +116,6 @@ function charsCounter() {
     }
 }
 
-
 function alertFunc() {
     if(document.getElementById('textInput').value.length < 30)
     alert('Please Enter 30 Chars at Least') }
@@ -155,17 +133,16 @@ function saveData() {
         field6: String(choicesOfHobby),
         field7: color.value,
         field8: String(choicesCountry),
-        field9: textArea.value
-    }
+        field9: textArea.value  }
+
         if (window.localStorage.length == 0) {
             toPush.push(myObj)
             window.localStorage.setItem('data', JSON.stringify(toPush));
-            console.log(JSON.stringify(toPush))
-        } else {
-        const currentData = JSON.parse(window.localStorage.getItem('data'))
-        currentData.push(myObj)
-        window.localStorage.setItem('data', JSON.stringify(currentData))
-        }
+            console.log(JSON.stringify(toPush))     } 
+        else {
+            const currentData = JSON.parse(window.localStorage.getItem('data'))
+            currentData.push(myObj)
+            window.localStorage.setItem('data', JSON.stringify(currentData))    }
     }   
     var i =0;
     const to_limit_i = JSON.parse(localStorage.getItem('data'));
@@ -202,57 +179,13 @@ function saveData() {
         btn.value="Delete"
         btn.name="Delete"
         btn.id = "deleteButton"+String(i)
-        document.getElementById("deleteButton"+String(i)).onclick = () => {
-        let z = 0;
-        // while(z !== to_limit_i.length){
-        //     delete to_limit_i[z]
-        //     currentData.push(to_limit_i)
-        //     window.localStorage.setItem('data', JSON.stringify(currentData))
-        //     console.log(to_limit_i[z])
-        //     z = z + 1
-        // }
-        location.reload()
+        btn.onclick = (i) => {
+            console.log(i)
+            let newStorage = JSON.parse(window.localStorage.getItem('data'))
+            newStorage.splice(i,1) 
+            window.localStorage.setItem('data', JSON.stringify(newStorage))
+            location.reload()
         }
     i = i + 1;
     }
-
-// var i = 0
-// while(i !== localStorage.length){
-//     i++;
-//     var table = document.getElementById('myTable');
-//     var row = table.insertRow(i);
-//     for(j=1; j < 10; j++) {
-//         var jSON = window.localStorage.getItem(i)
-//         var cell = row.insertCell(j-1)
-//         var parsedjSON = JSON.parse(jSON)
-//         var A = "field"+String(j)
-//         var final = parsedjSON[A]
-//         var node = document.createTextNode(final)
-//         node.innerHTML = String(final)
-//         cell.innerHTML = node.innerHTML
-//         if(cell.innerHTML == "Red") {
-//             cell.style.backgroundColor = "Red"
-//         } else if(node.innerHTML == "Blue") {
-//             cell.style.backgroundColor = "Blue"
-//         } else if(node.innerHTML == "Yellow") {
-//             cell.style.backgroundColor = "Yellow"
-//         } else if(node.innerHTML == "Black") {
-//             cell.style.backgroundColor = "Black"
-//         } else if(node.innerHTML == "Green") {
-//             cell.style.backgroundColor = "Green"
-//         } else if(node.innerHTML == "White") {
-//             cell.style.backgroundColor = "White"
-//         }
-//     }
-//     var btn = document.createElement('input');
-//     cell.appendChild(btn)
-//     btn.type = 'button'
-//     btn.value="Delete"
-//     btn.name="Delete"
-//     btn.id = "deleteButton"+String(i)
-//     document.getElementById("deleteButton"+String(i)).onclick = () => {
-//         localStorage.removeItem(i)
-//         location.reload()
-//     }
-// }
 
