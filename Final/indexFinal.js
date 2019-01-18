@@ -21,7 +21,7 @@ var countries = document.querySelectorAll('.checkboxC:checked')
 var countriesArray = Array.prototype.slice.call(countries);
 var textArea = document.getElementById('textInput');
 
-var choicesCountry = new Array();
+const choicesCountry = new Array();
 function getSelCountries() {
     var mySelectedCountries = document.getElementById('mySelectCountries');
     if (mySelectedCountries.options[mySelectedCountries.selectedIndex].value!=null){
@@ -127,7 +127,7 @@ function saveData() {
         field2: lname.value,
         field3: birth.value,
         field4: salary.value,
-        field5: selectedGender,
+        field5: String(selectedGender),
         field6: choicesOfHobby,
         field7: color.value,
         field8: choicesCountry,
@@ -248,12 +248,21 @@ function saveData() {
             console.log(arrayHobbies.field6[0])
             choicesOfHobby = [];
             color.value = to_limit_i[0].field7
-            choicesCountry = to_limit_i[0].field8
+            // choicesCountry = to_limit_i[0].field8
             textArea.value = to_limit_i[0].field9
             var saveButton = document.createElement('button')
             saveButton.innerHTML="Save"
             cell.appendChild(saveButton)
             saveButton.onclick = () => {
+                // getSelCountries()
+                // let choicesCountry = [];
+                // function getSelCountries() {
+                //     var mySelectedCountries = document.getElementById('mySelectCountries');
+                //     if (mySelectedCountries.options[mySelectedCountries.selectedIndex].value!=null){
+                //         choicesCountry.push(mySelectedCountries.options[mySelectedCountries.selectedIndex].value)
+                //     }
+                // }   
+
                 let mySelectedHobbies = document.getElementsByClassName('hobbies');
                 for (i=0; i<mySelectedHobbies.length; i++){
                     if (mySelectedHobbies[i].checked){
@@ -267,7 +276,7 @@ function saveData() {
                      break;
                     }
                 }
-                
+                getSelCountries();
                 console.log(choicesOfHobby)
                 to_limit_i[0].field1 = fname.value
                 to_limit_i[0].field2 = lname.value
