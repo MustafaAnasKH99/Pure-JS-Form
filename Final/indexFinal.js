@@ -1,18 +1,16 @@
 var coloredBox = document.getElementById("colorBackG");
 coloredBox.style.backgroundColor = 'White';
 
-var fname = document.getElementById('fname');
-var lname = document.getElementById('lname');
-var birth = document.getElementById('birth')
-var salary = document.getElementById('salary')
-var gender = document.getElementsByName('gender');
-var selectedGender = []
-for (var i = 0, length = gender.length; i < length; i++)
-{
- if (gender[i].checked)
- {
+const fname = document.getElementById('fname');
+const lname = document.getElementById('lname');
+const birth = document.getElementById('birth')
+const salary = document.getElementById('salary')
+const gender = document.getElementsByName('gender');
+const selectedGender = []
+const arrayHobbies = JSON.parse(localStorage.getItem('data'))[0]
+for (var i = 0, length = gender.length; i < length; i++) {
+ if (gender[i].checked) {
   selectedGender.push(gender[i].value)
-  // only one radio can be logically checked, don't check the rest
   break;
  }
 }
@@ -202,16 +200,76 @@ function saveData() {
             lname.value = to_limit_i[0].field2
             birth.value = to_limit_i[0].field3
             salary.value = to_limit_i[0].field4
-            selectedGender = to_limit_i[0].field5
-            choicesOfHobby = to_limit_i[0].field6
+            // selectedGender = to_limit_i[0].field5
+                    // let y = 0;
+                    // for (y=0; y=3; y++){
+                        if(arrayHobbies.field6[0] == document.form.skiing.value){
+                            document.form.skiing.checked = 'true'
+                        } else if (arrayHobbies.field6[0] == document.form.writing.value) {
+                            document.form.writing.checked = 'true'
+                        } else if (arrayHobbies.field6[0] == document.form.coding.value) {
+                            document.form.coding.checked = 'true'
+                        } else if (arrayHobbies.field6[0] == document.form.reading.value) {
+                            document.form.reading.checked = 'true'
+                        }else if (arrayHobbies.field6[0] == document.form.filmmaking.value) {
+                            document.form.filmmaking.checked = 'true'
+                        } else if (arrayHobbies.field6[0] == document.form.swimming.value) {
+                            document.form.swimming.checked = 'true'
+                        }
+
+                        if(arrayHobbies.field6[1] == document.form.skiing.value){
+                            document.form.skiing.checked = 'true'
+                        } else if (arrayHobbies.field6[1] == document.form.writing.value) {
+                            document.form.writing.checked = 'true'
+                        } else if (arrayHobbies.field6[1] == document.form.coding.value) {
+                            document.form.coding.checked = 'true'
+                        } else if (arrayHobbies.field6[1] == document.form.reading.value) {
+                            document.form.reading.checked = 'true'
+                        }else if (arrayHobbies.field6[1] == document.form.filmmaking.value) {
+                            document.form.filmmaking.checked = 'true'
+                        } else if (arrayHobbies.field6[1] == document.form.swimming.value) {
+                            document.form.swimming.checked = 'true'
+                        }
+
+                        if(arrayHobbies.field6[2] == document.form.skiing.value){
+                            document.form.skiing.checked = 'true'
+                        } else if (arrayHobbies.field6[2] == document.form.writing.value) {
+                            document.form.writing.checked = 'true'
+                        } else if (arrayHobbies.field6[2] == document.form.coding.value) {
+                            document.form.coding.checked = 'true'
+                        } else if (arrayHobbies.field6[2] == document.form.reading.value) {
+                            document.form.reading.checked = 'true'
+                        }else if (arrayHobbies.field6[2] == document.form.filmmaking.value) {
+                            document.form.filmmaking.checked = 'true'
+                        } else if (arrayHobbies.field6[2] == document.form.swimming.value) {
+                            document.form.swimming.checked = 'true'
+                        }
+                    // }
+            console.log(arrayHobbies.field6[0])
+            choicesOfHobby = [];
             color.value = to_limit_i[0].field7
             choicesCountry = to_limit_i[0].field8
             textArea.value = to_limit_i[0].field9
             var saveButton = document.createElement('button')
             saveButton.innerHTML="Save"
             cell.appendChild(saveButton)
-            saveButton.onclick = () => 
-            {   to_limit_i[0].field1 = fname.value
+            saveButton.onclick = () => {
+                let mySelectedHobbies = document.getElementsByClassName('hobbies');
+                for (i=0; i<mySelectedHobbies.length; i++){
+                    if (mySelectedHobbies[i].checked){
+                    choicesOfHobby.push(mySelectedHobbies[i].value)
+                    }
+                }
+                let selectedGender = []
+                for (var i = 0, length = gender.length; i < length; i++) {
+                    if (gender[i].checked) {
+                     selectedGender.push(gender[i].value)
+                     break;
+                    }
+                }
+                
+                console.log(choicesOfHobby)
+                to_limit_i[0].field1 = fname.value
                 to_limit_i[0].field2 = lname.value
                 to_limit_i[0].field3 = birth.value
                 to_limit_i[0].field4 = salary.value 
@@ -222,7 +280,7 @@ function saveData() {
                 to_limit_i[0].field9 = textArea.value     
                 cell.removeChild(saveButton)
                 window.localStorage.setItem('data', JSON.stringify(to_limit_i))
-                location.reload()   }
+                location.reload(); form.reset()   }
         }
     i = i + 1;
     }

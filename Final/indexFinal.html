@@ -1,7 +1,7 @@
 <html>
     <head>
         <title>Solweavers Form Final</title>
-        <meta charset="ISO-8859-1">
+        <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="indexFinal.css">
     </head>
     
@@ -12,18 +12,11 @@
             <input type="text" name="Last Name" placeholder="Last Name" id="lname"required ></input>
             <input type="date" name="bdaymonth" class="date" id="birth" ste="4"required ></input>
             <input type="number" name="number" step="0.0001" min="0" placeholder="Salary" class="salary" id="salary" required/>
-            <!-- <input type="number" name="salary" min="0" max="5000" step="4" placeholder="Salary" class="salary" id="salary"required ></input> -->
-            
-            <!-- This Needs to be a radio button -->
-            <!-- <select id="selGender" required>
-                <option name="Female" value="female" selected>Female</option>
-                <option name="Male" value="male">Male</option>
-            </select> -->
 
             <br/>
             
             <div id="selGender">
-                <input type="radio" name="gender" value="female" checked>Female</input>
+                <input type="radio" name="gender" value="female">Female</input>
                 <input type="radio" name="gender" value="male">Male</input>
             </div>
 
@@ -63,7 +56,8 @@
                 <textarea onblur="alertFunc()" onkeyup="charsCounter()" id="textInput" minlength="30" maxlength="140"required></textarea>
                 <span id="insChars" style="background-color: red">140</span>
                 <br/>
-                <button onclick="getSelHobbies(), getSelCountries(), saveData()">Save Form</button>
+                <!-- <button onclick="getSelHobbies(), getSelCountries(), saveData()">Save Form</button> -->
+                <input type="submit" value="submit" onclick="getSelHobbies(), getSelCountries(), saveData()">
             </form>
             <table id="myTable">
                 <tr>
