@@ -96,6 +96,50 @@ function KeepCount2() {
     }
 }
 
+function funcForCheckBoxes(){
+    if(arrayHobbies.field6[0] == document.form.skiing.value){
+        document.form.skiing.checked = 'true'
+    } else if (arrayHobbies.field6[0] == document.form.writing.value) {
+        document.form.writing.checked = 'true'
+    } else if (arrayHobbies.field6[0] == document.form.coding.value) {
+        document.form.coding.checked = 'true'
+    } else if (arrayHobbies.field6[0] == document.form.reading.value) {
+        document.form.reading.checked = 'true'
+    }else if (arrayHobbies.field6[0] == document.form.filmmaking.value) {
+        document.form.filmmaking.checked = 'true'
+    } else if (arrayHobbies.field6[0] == document.form.swimming.value) {
+        document.form.swimming.checked = 'true'
+    }
+
+    if(arrayHobbies.field6[1] == document.form.skiing.value){
+        document.form.skiing.checked = 'true'
+    } else if (arrayHobbies.field6[1] == document.form.writing.value) {
+        document.form.writing.checked = 'true'
+    } else if (arrayHobbies.field6[1] == document.form.coding.value) {
+        document.form.coding.checked = 'true'
+    } else if (arrayHobbies.field6[1] == document.form.reading.value) {
+        document.form.reading.checked = 'true'
+    }else if (arrayHobbies.field6[1] == document.form.filmmaking.value) {
+        document.form.filmmaking.checked = 'true'
+    } else if (arrayHobbies.field6[1] == document.form.swimming.value) {
+        document.form.swimming.checked = 'true'
+    }
+
+    if(arrayHobbies.field6[2] == document.form.skiing.value){
+        document.form.skiing.checked = 'true'
+    } else if (arrayHobbies.field6[2] == document.form.writing.value) {
+        document.form.writing.checked = 'true'
+    } else if (arrayHobbies.field6[2] == document.form.coding.value) {
+        document.form.coding.checked = 'true'
+    } else if (arrayHobbies.field6[2] == document.form.reading.value) {
+        document.form.reading.checked = 'true'
+    }else if (arrayHobbies.field6[2] == document.form.filmmaking.value) {
+        document.form.filmmaking.checked = 'true'
+    } else if (arrayHobbies.field6[2] == document.form.swimming.value) {
+        document.form.swimming.checked = 'true'
+    }
+}
+
 function getColorFunction() {
     colorBackG.style.backgroundColor = colorList.options[colorList.selectedIndex].value
 }
@@ -203,47 +247,7 @@ function saveData() {
             // selectedGender = to_limit_i[0].field5
                     // let y = 0;
                     // for (y=0; y=3; y++){
-                        if(arrayHobbies.field6[0] == document.form.skiing.value){
-                            document.form.skiing.checked = 'true'
-                        } else if (arrayHobbies.field6[0] == document.form.writing.value) {
-                            document.form.writing.checked = 'true'
-                        } else if (arrayHobbies.field6[0] == document.form.coding.value) {
-                            document.form.coding.checked = 'true'
-                        } else if (arrayHobbies.field6[0] == document.form.reading.value) {
-                            document.form.reading.checked = 'true'
-                        }else if (arrayHobbies.field6[0] == document.form.filmmaking.value) {
-                            document.form.filmmaking.checked = 'true'
-                        } else if (arrayHobbies.field6[0] == document.form.swimming.value) {
-                            document.form.swimming.checked = 'true'
-                        }
-
-                        if(arrayHobbies.field6[1] == document.form.skiing.value){
-                            document.form.skiing.checked = 'true'
-                        } else if (arrayHobbies.field6[1] == document.form.writing.value) {
-                            document.form.writing.checked = 'true'
-                        } else if (arrayHobbies.field6[1] == document.form.coding.value) {
-                            document.form.coding.checked = 'true'
-                        } else if (arrayHobbies.field6[1] == document.form.reading.value) {
-                            document.form.reading.checked = 'true'
-                        }else if (arrayHobbies.field6[1] == document.form.filmmaking.value) {
-                            document.form.filmmaking.checked = 'true'
-                        } else if (arrayHobbies.field6[1] == document.form.swimming.value) {
-                            document.form.swimming.checked = 'true'
-                        }
-
-                        if(arrayHobbies.field6[2] == document.form.skiing.value){
-                            document.form.skiing.checked = 'true'
-                        } else if (arrayHobbies.field6[2] == document.form.writing.value) {
-                            document.form.writing.checked = 'true'
-                        } else if (arrayHobbies.field6[2] == document.form.coding.value) {
-                            document.form.coding.checked = 'true'
-                        } else if (arrayHobbies.field6[2] == document.form.reading.value) {
-                            document.form.reading.checked = 'true'
-                        }else if (arrayHobbies.field6[2] == document.form.filmmaking.value) {
-                            document.form.filmmaking.checked = 'true'
-                        } else if (arrayHobbies.field6[2] == document.form.swimming.value) {
-                            document.form.swimming.checked = 'true'
-                        }
+                        funcForCheckBoxes()
                     // }
             console.log(arrayHobbies.field6[0])
             choicesOfHobby = [];
