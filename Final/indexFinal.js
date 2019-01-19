@@ -223,11 +223,19 @@ function saveData() {
         delBtn.name="Delete"
         delBtn.id = "deleteButton"+String(i)
         delBtn.onclick = (i) => {
-            console.log(i)
-            let newStorage = JSON.parse(window.localStorage.getItem('data'))
-            newStorage.splice(i,1) 
-            window.localStorage.setItem('data', JSON.stringify(newStorage))
-            location.reload()
+            // if(confirm('Are you sure you want to delete this?')){
+            //     return true
+            // } else {
+            //     return false;
+            // }
+            if (confirm("Are you sure you want to delete this?")) {
+                let newStorage = JSON.parse(window.localStorage.getItem('data'))
+                newStorage.splice(i,1) 
+                window.localStorage.setItem('data', JSON.stringify(newStorage))
+                location.reload()
+              } else {
+                return false;
+              }
         }
 
         var editBtn = document.createElement('input');
