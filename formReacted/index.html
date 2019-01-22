@@ -77,6 +77,7 @@
         </div>
         <script type="text/babel">
 const rootElement = document.getElementById('wrapper')
+const textRem = ''
 const hobbies = []
 const countries = []
 const pushDataArray = JSON.parse(window.localStorage.getItem('data'));
@@ -109,15 +110,15 @@ class MainInfo extends React.Component{
     }
 
     uploadFunc() {
+        document.form.reset()
         this.setState({hobbies: JSON.stringify(hobbies)})
-        console.log(hobbies)
         if(window.localStorage.getItem('data')){
-        alert('there is data in the storage already')
+        // alert('there is data in the storage already')
         pushDataArray.push(this.state)
         window.localStorage.setItem('data', JSON.stringify(pushDataArray))
 
         } else {
-            alert('sdjsfhsd')
+            // alert('another submission')
             let dataArray = []
             dataArray.push(this.state)
             window.localStorage.setItem('data', JSON.stringify(dataArray))
@@ -152,7 +153,6 @@ class MainInfo extends React.Component{
     handleChange6(event){
         hobbies.push(event.target.value)
         this.setState({hobbies: JSON.stringify(hobbies)})
-        console.log(hobbies)
     }
 
     handleChange7(event){
@@ -161,12 +161,24 @@ class MainInfo extends React.Component{
 
     handleChange8(event){
         countries.push(event.target.value)
-        console.log(countries)
         this.setState({countries: JSON.stringify(countries)})
     }
 
     handleChange9(event){
         this.setState({additional_text: event.target.value})
+    }
+
+    handleChangeText(event){
+        let textLeft = 140 - (event.target.value.length)
+        document.getElementById('insCbackgroundColor').innerHTML = textLeft
+        let textIn = document.getElementById('textInput').value.length
+        if ( textIn < 30) {
+            document.getElementById('insCbackgroundColor').style.backgroundColor =  'red';
+        } else if (textIn < 140) {
+            document.getElementById('insCbackgroundColor').style.backgroundColor =  'green';
+        } else {
+            document.getElementById('insCbackgroundColor').style.backgroundColor =  'blue';
+        }
     }
     render() {
         let boxStyle = {
@@ -174,7 +186,7 @@ class MainInfo extends React.Component{
         }
         return (
             <div>
-            <form>
+            <form name="form">
                 <input type="text" name="First Name" placeholder="First Name" id="fname" onBlur={event => this.handleChange1(event)} required></input>
                 <input type="text" name="Last Name" placeholder="Last Name" id="lname" onBlur={event => this.handleChange2(event)} required></input>
                 <input type="date" name="bdaymonth" class="date" id="birth" ste="4" onBlur={event => this.handleChange3(event)} required></input>
@@ -248,8 +260,8 @@ class MainInfo extends React.Component{
 
                 <br/>
                 <h4>Something Else You Want to Tell Us?</h4>
-                <textarea id="textInput" minlength="30" maxlength="140"required onBlur={event => this.handleChange9(event)} onChange={event => this.handleChangeText(event)}></textarea>
-                <span id="insCbackgroundColor: this.props.pushDataArray.colorbackgroundColor: this.props.pushDataArray.colorbackgroundColor: this.props.pushDataArray.colorhars" style={boxStyle}>140</span>
+                <textarea id="textInput" minlength="30" maxlength="140" required onBlur={event => this.handleChange9(event)} onChange={event => this.handleChangeText(event)}></textarea>
+                <span id="insCbackgroundColor" style={boxStyle}>140</span>
                 <br/>
                 </form>
                 <input type="submit" value="submit" onClick={() => {
@@ -269,18 +281,17 @@ class RowComponent extends React.Component{
         this.handleClick = this.handleClick.bind(this)
     }
 
-    componentDidUpdate(){
-        alert('Component Updated')
-    }
+    // componentDidUpdate(){
+    //     alert('Component Updated')
+    // }
 
     handleClick(index){
-        alert('handle Click')
+        // alert('handle Click')
         pushDataArray.splice(index, 1)
         window.localStorage.setItem('data', JSON.stringify(pushDataArray))
         if(this.state.value == 'true') {
             this.setState({value: 'false'})
         } else {
-            console.log('2nd cond')
             this.setState({value: 'true'})
         }
     }
@@ -329,7 +340,7 @@ class HTMLtable extends React.Component {
         this.state = { value: 'true' }
     }
     componentDidUpdate(){
-        alert('table updated')
+        // alert('table updated')
     }
     handler(){
         if(this.state.value == 'true'){
@@ -369,9 +380,11 @@ class App extends React.Component{
         this.handler = this.handler.bind(this)
         this.state = { value: 'true' }
     }
-    componentDidUpdate(){
-        alert('App updated')
-    }
+    
+    // componentDidUpdate(){
+    //     alert('App updated')
+    // }
+
     handler(){
         if(this.state.value == 'true'){
             this.setState({value: 'false'})
