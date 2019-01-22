@@ -187,8 +187,8 @@ class MainInfo extends React.Component{
         return (
             <div>
             <form name="form">
-                <input type="text" name="First Name" placeholder="First Name" id="fname" onBlur={event => this.handleChange1(event)} required></input>
-                <input type="text" name="Last Name" placeholder="Last Name" id="lname" onBlur={event => this.handleChange2(event)} required></input>
+                <input type="text" name="First_Name" placeholder="First Name" id="fname" onBlur={event => this.handleChange1(event)} required></input>
+                <input type="text" name="Last_Name" placeholder="Last Name" id="lname" onBlur={event => this.handleChange2(event)} required></input>
                 <input type="date" name="bdaymonth" class="date" id="birth" ste="4" onBlur={event => this.handleChange3(event)} required></input>
                 <input type="number" name="number" step="0.0001" min="0" placeholder="Salary" class="salary" id="salary" onBlur={event => this.handleChange4(event)} required/>
                 
@@ -260,7 +260,7 @@ class MainInfo extends React.Component{
 
                 <br/>
                 <h4>Something Else You Want to Tell Us?</h4>
-                <textarea id="textInput" minlength="30" maxlength="140" required onBlur={event => this.handleChange9(event)} onChange={event => this.handleChangeText(event)}></textarea>
+                <textarea name="add_text" id="textInput" minlength="30" maxlength="140" required onBlur={event => this.handleChange9(event)} onChange={event => this.handleChangeText(event)}></textarea>
                 <span id="insCbackgroundColor" style={boxStyle}>140</span>
                 <br/>
                 </form>
@@ -277,7 +277,7 @@ class MainInfo extends React.Component{
 class RowComponent extends React.Component{
     constructor(props) {
         super(props);
-        this.state = {  value: 'true' }
+        this.state = {  value: 'true', clicked: 'false' }
         this.handleClick = this.handleClick.bind(this)
     }
 
@@ -319,16 +319,43 @@ class RowComponent extends React.Component{
                 }>
                 Delete
                 </button>
-                {/* 
-                 {
-                    for(i=0; i =pushDataArray.length; i++){
-                        <button onClick={(i) => 
-                            pushDataArray.splice(i, 1)
-                            window.localStorage.setItem('data', JSON.stringify(pushDataArray))
-                        }>Delete</button>
+                <button onClick={this.state.clicked = !this.state.clicked, (i) => {
+                        console.log(this.state.clicked)
+                        console.log(this.state.clicked)
+                        console.log(pushDataArray[0].first_name)
+                        document.form.First_Name.value = pushDataArray[0].first_name
+                        document.form.Last_Name.value = pushDataArray[0].last_name
+                        document.form.bdaymonth.value = pushDataArray[0].birth
+                        document.form.number.value = pushDataArray[0].salary
+                        document.form.gender.value = pushDataArray[0].gender
+                        document.form.add_text.value = pushDataArray[0].additional_text
+                        this.props.action()
+                        i++
                     }
+                }>
+                    Edit
+                </button>
+                {
+                    this.state.clicked ? <button onClick={this.state.clicked='false', () => {
+                        this.props.action()
+                        pushDataArray[0].first_name = document.form.First_Name.value
+                        pushDataArray[0].last_name = document.form.Last_Name.value
+                        pushDataArray[0].birth = document.form.bdaymonth.value
+                        pushDataArray[0].salary = document.form.number.value
+                        // pushDataArray[0].gender = document.form.gender.checked.value
+                        pushDataArray[0].additional_text = document.form.add_text.value
+                        // if(this.state.value == 'true') {
+                        //     this.state.value = 'false'
+                        // this.setState({value: 'false'})
+                        // } else {
+                        //     this.setState({value: 'true'})
+                        //     this.state.value = 'true'
+                        // }
+                        window.localStorage.setItem('data', JSON.stringify(pushDataArray))
+                        console.log(this.state.clicked)
+                    }
+                    }>Save</button> : <div></div>
                 }
-                */}
             </tr>
         )
     }
@@ -343,7 +370,7 @@ class HTMLtable extends React.Component {
         // alert('table updated')
     }
     handler(){
-        if(this.state.value == 'true'){
+        if(this.state.value == true){
             this.setState({value: 'false'})
         } else {
             this.setState({value: 'true'})
@@ -380,11 +407,10 @@ class App extends React.Component{
         this.handler = this.handler.bind(this)
         this.state = { value: 'true' }
     }
-    
     // componentDidUpdate(){
     //     alert('App updated')
     // }
-
+    
     handler(){
         if(this.state.value == 'true'){
             this.setState({value: 'false'})
