@@ -1,0 +1,47 @@
+{
+        // if(this.state.value == 'true') {
+        //     this.state.value = 'false'
+        // this.setState({value: 'false'})
+        // } else {
+        //     this.setState({value: 'true'})
+        //     this.state.value = 'true'
+        // }
+        window.localStorage.setItem('data', JSON.stringify(pushDataArray))
+        console.log(this.state.clicked)
+    }
+    }>Save</button> : <div></div>
+}   
+
+
+class SaveButton extends React.Component{
+    render(){
+        return (
+            <button onClick={alert('save')}>Save</button>
+        )
+}
+}
+
+class EdButton extends React.Component{
+    render(){
+        return (
+            <button onClick={console.log('edit')}>
+                    Edit
+            </button>
+        )
+    }
+}
+
+
+
+<button onClick={this.setState({clicked: true}), () => {
+    document.form.First_Name.value = pushDataArray[0].first_name
+    document.form.Last_Name.value = pushDataArray[0].last_name
+    document.form.bdaymonth.value = pushDataArray[0].birth
+    document.form.number.value = pushDataArray[0].salary
+    document.form.gender.value = pushDataArray[0].gender
+    document.form.add_text.value = pushDataArray[0].additional_text
+    // this.props.action()
+    }
+    }>
+        Edit
+</button>

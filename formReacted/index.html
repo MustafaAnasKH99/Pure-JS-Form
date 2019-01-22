@@ -79,7 +79,11 @@
 const rootElement = document.getElementById('wrapper')
 const textRem = ''
 const hobbies = []
+const hobbies2 = []
 const countries = []
+const countries2 = []
+let choicesOfHobby = []
+const mySelectedHobbies = document.getElementsByClassName('hobbies');
 const pushDataArray = JSON.parse(window.localStorage.getItem('data'));
 class MainInfo extends React.Component{
     construtor(props){
@@ -151,8 +155,12 @@ class MainInfo extends React.Component{
     }
 
     handleChange6(event){
-        hobbies.push(event.target.value)
-        this.setState({hobbies: JSON.stringify(hobbies)})
+        if(document.form.add_text.value){
+            hobbies2.push(event.target.value)
+        } else {
+            hobbies.push(event.target.value)
+            this.setState({hobbies: JSON.stringify(hobbies)})
+        }
     }
 
     handleChange7(event){
@@ -160,8 +168,12 @@ class MainInfo extends React.Component{
     }
 
     handleChange8(event){
-        countries.push(event.target.value)
-        this.setState({countries: JSON.stringify(countries)})
+        if(document.form.add_text.value){
+            countries2.push(event.target.value)
+        } else {
+            countries.push(event.target.value)
+            this.setState({countries: JSON.stringify(countries)})
+        }
     }
 
     handleChange9(event){
@@ -238,7 +250,7 @@ class MainInfo extends React.Component{
 
                 <br/>
                 <h4>Your Favorite Color</h4>
-                <select id="colorList" onBlur="getColorFunction()" required>      
+                <select id="colorList" required>      
                             <option name="color" value="Red" onClick={event => this.handleChange7(event)}>Red</option>
                             <option name="color" value="Blue" onClick={event => this.handleChange7(event)}>Blue</option>
                             <option name="color" value="Yellow" onClick={event => this.handleChange7(event)}>Yellow</option>
@@ -274,19 +286,82 @@ class MainInfo extends React.Component{
     }
 }
 
+class EdButton extends React.Component{
+    constructor(props){
+        super(props);
+        this.aFunct = this.aFunct.bind(this)
+    }
+    aFunct(){
+        this.props.act()
+        document.form.First_Name.value = pushDataArray[0].first_name
+        document.form.Last_Name.value = pushDataArray[0].last_name
+        document.form.bdaymonth.value = pushDataArray[0].birth
+        document.form.number.value = pushDataArray[0].salary
+        document.form.gender.value = pushDataArray[0].gender
+        // here there is hobbies
+        // here there is countries
+        document.form.add_text.value = pushDataArray[0].additional_text
+    }
+    render(){
+        return (
+            <button onClick={() => {this.aFunct()}}>Edit</button>
+        )
+    }
+}
+
+class SaveButton extends React.Component{
+    constructor(props){
+        super(props);
+        this.bFunct = this.bFunct.bind(this)
+    }
+    bFunct(){
+        this.props.act()
+        pushDataArray[0].first_name = document.form.First_Name.value
+        pushDataArray[0].last_name = document.form.Last_Name.value
+        pushDataArray[0].birth = document.form.bdaymonth.value
+        pushDataArray[0].salary = document.form.number.value
+        pushDataArray[0].gender = document.form.gender.value
+        // hobbies
+        pushDataArray[0].hobbies = JSON.stringify(hobbies2)
+        pushDataArray[0].color = document.getElementById('colorList').value
+        //countries
+        pushDataArray[0].countries = JSON.stringify(countries2)
+        pushDataArray[0].additional_text = document.form.add_text.value
+        window.localStorage.setItem('data', JSON.stringify(pushDataArray))
+        this.props.refresh2()
+        document.form.First_Name.value = ''
+        document.form.Last_Name.value = ''
+        document.form.bdaymonth.value = ''
+        document.form.number.value = ''
+        document.form.gender[0].checked = false;
+        document.form.gender[0].checked = false;
+        // here there is hobbies
+        // here there is countries
+        document.form.add_text.value = ''
+    }
+    render(){
+        return (
+            <button onClick={() => {this.bFunct()}}>Save</button>
+        )
+    }
+}
+
 class RowComponent extends React.Component{
     constructor(props) {
         super(props);
-        this.state = {  value: 'true', clicked: 'false' }
+        this.state = {  value: 'true', clicked: false }
         this.handleClick = this.handleClick.bind(this)
+        this.toggleState = this.toggleState.bind(this)
     }
 
     // componentDidUpdate(){
     //     alert('Component Updated')
     // }
+    toggleState(){
+        this.state.clicked ? this.setState({clicked : false}) : this.setState({clicked : true})
+    }
 
     handleClick(index){
-        // alert('handle Click')
         pushDataArray.splice(index, 1)
         window.localStorage.setItem('data', JSON.stringify(pushDataArray))
         if(this.state.value == 'true') {
@@ -311,50 +386,15 @@ class RowComponent extends React.Component{
                 <td style={bgStyle}>{this.props.pushDataArray.color}</td>
                 <td>{this.props.pushDataArray.countries}</td>
                 <td>{this.props.pushDataArray.additional_text}</td>
-                <button onClick={(index) => 
-                    {
-                        this.handleClick(index);
-                        this.props.action()
-                    }
-                }>
-                Delete
-                </button>
-                <button onClick={this.state.clicked = !this.state.clicked, (i) => {
-                        console.log(this.state.clicked)
-                        console.log(this.state.clicked)
-                        console.log(pushDataArray[0].first_name)
-                        document.form.First_Name.value = pushDataArray[0].first_name
-                        document.form.Last_Name.value = pushDataArray[0].last_name
-                        document.form.bdaymonth.value = pushDataArray[0].birth
-                        document.form.number.value = pushDataArray[0].salary
-                        document.form.gender.value = pushDataArray[0].gender
-                        document.form.add_text.value = pushDataArray[0].additional_text
-                        this.props.action()
-                        i++
-                    }
-                }>
-                    Edit
+                <button onClick={(index) =>  {
+                            this.handleClick(index);
+                            this.props.action()
+                        }
+                    }>
+                    Delete
                 </button>
                 {
-                    this.state.clicked ? <button onClick={this.state.clicked='false', () => {
-                        this.props.action()
-                        pushDataArray[0].first_name = document.form.First_Name.value
-                        pushDataArray[0].last_name = document.form.Last_Name.value
-                        pushDataArray[0].birth = document.form.bdaymonth.value
-                        pushDataArray[0].salary = document.form.number.value
-                        // pushDataArray[0].gender = document.form.gender.checked.value
-                        pushDataArray[0].additional_text = document.form.add_text.value
-                        // if(this.state.value == 'true') {
-                        //     this.state.value = 'false'
-                        // this.setState({value: 'false'})
-                        // } else {
-                        //     this.setState({value: 'true'})
-                        //     this.state.value = 'true'
-                        // }
-                        window.localStorage.setItem('data', JSON.stringify(pushDataArray))
-                        console.log(this.state.clicked)
-                    }
-                    }>Save</button> : <div></div>
+                    this.state.clicked ?  <SaveButton refresh2={this.props.refresh1} act={this.toggleState}/> : <EdButton act={this.toggleState}/>
                 }
             </tr>
         )
@@ -392,7 +432,7 @@ class HTMLtable extends React.Component {
                 </tr>
                 {
                     pushDataArray.map((info) => {
-                        return <RowComponent pushDataArray={info} action={this.handler} />
+                        return <RowComponent pushDataArray={info} action={this.handler} refresh1={this.props.refresh0} />
                     })
                 }
                 
@@ -404,25 +444,26 @@ class HTMLtable extends React.Component {
 class App extends React.Component{
     constructor(props) {
         super(props);
+        this.toggler = this.toggler.bind(this)
         this.handler = this.handler.bind(this)
-        this.state = { value: 'true' }
+        this.state = { value: true }
     }
     // componentDidUpdate(){
     //     alert('App updated')
     // }
     
     handler(){
-        if(this.state.value == 'true'){
-            this.setState({value: 'false'})
-        } else {
-            this.setState({value: 'true'})
-        }
+        this.state.value ? this.setState({value: false}) : this.setState({value: true})
+    }
+
+    toggler(){
+        this.state.value ? this.setState({value: false}) : this.setState({value: true})   
     }
     render(){
         return(
             <div>
                 <MainInfo action={this.handler}/>
-                <HTMLtable />
+                <HTMLtable refresh0={this.toggler} />
             </div>
         )
     }
