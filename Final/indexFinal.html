@@ -1,77 +1,138 @@
 <html>
     <head>
-        <title>Solweavers Form Final</title>
+        <title>One Page Form</title>
         <meta charset="UTF-8">
         <link rel="stylesheet" type="text/css" href="indexFinal.css">
     </head>
     
     <body>
-        <form name="form" id="formReset">
-            
-            <input type="text" name="First Name" placeholder="First Name" id="fname"required ></input>
-            <input type="text" name="Last Name" placeholder="Last Name" id="lname"required ></input>
-            <input type="date" name="bdaymonth" class="date" id="birth" ste="4"required ></input>
-            <input type="number" name="number" step="0.0001" min="0" placeholder="Salary" class="salary" id="salary" required/>
+        <div class="main-wrapper">
+            <span class="form-title">Form Title</span>
+            <form name="form" id="formReset">
+                <div>
+                    <label>First Name</label>
+                    <input class="text-field" type="text" name="First Name" placeholder="First Name" id="fname"required ></input>
+                </div>
+                <div>
+                    <label>Last Name</label>
+                    <input class="text-field" type="text" name="Last Name" placeholder="Last Name" id="lname"required ></input>
+                </div>
+                <div>
+                    <label>Date of Birth</label>
+                    <input class="text-field" type="date" name="bdaymonth" class="date" id="birth" ste="4"required ></input>
+                </div>
+                <div>
+                    <label>Income</label>
+                    <input class="text-field" type="number" name="number" step="0.0001" min="0" placeholder="Salary" class="salary" id="salary" required/>
+                </div>
 
-            <br/>
-            
-            <div id="selGender">
-                <input type="radio" name="gender" value="female">Female</input>
-                <input type="radio" name="gender" value="male" checked>Male</input>
-            </div>
+                <div class="gender-wrapper">
+                    <label class="gender-label">Your Gender:</label>            
+                    <div id="selGender" class="radios-wrapper">
+                        <label for="female">Female</label>
+                        <input class="radio" type="radio" name="gender" value="female">
+                        <label for="male">Male</label>                
+                        <input type="radio" name="gender" value="male" checked>
+                        <label for="male">Neutral</label>                                
+                        <input type="radio" name="gender" value="neutral" checked>
+                    </div>
+                </div>
+                <div class="hobbies-wrapper">
+                    <label class="hobbies-label">Your Hobbies:</label>
+                    <div class="boxes-wrapper">
+                        <div style="margin: 0 auto">
+                            <label class="hobby-label" for="reading">Reading</label>
+                            <input onClick="return KeepCount()" id="1" class="hobbies checkbox" type="checkbox" value="reading" name="reading"></input>
+                        </div>
+                        <div style="margin: 0 auto">
+                            <label class="hobby-label" for="writing">Writing</label>            
+                            <input onClick="return KeepCount()" id="2" class="hobbies checkbox" type="checkbox" value="writing" name="writing">
+                        </div>
+                        <div style="margin: 0 auto">
+                            <label class="hobby-label" for="coding">Coding</label>            
+                            <input onClick="return KeepCount()" id="3" class="hobbies checkbox" type="checkbox" value="coding" name="coding">
+                        </div>
+                        <div style="margin: 0 auto">
+                            <label class="hobby-label" for="filmmaking">Filmmaking</label>            
+                            <input onClick="return KeepCount()" id="4" class="hobbies checkbox" type="checkbox" value="filmmaking" name="filmmaking">
+                        </div>
+                        <div style="margin: 0 auto">
+                            <label class="hobby-label" for="skiing">Skiing</label>                        
+                            <input onClick="return KeepCount()" id="5" class="hobbies checkbox" type="checkbox" value="skiing" name="skiing">
+                        </div>
+                        <div style="margin: 0 auto">
+                            <label class="hobby-label" for="swimming">Swimming</label>                                    
+                            <input onClick="return KeepCount()" id="6" class="hobbies checkbox" type="checkbox" value="swimming" name="swimming">
+                        </div>
+                    </div>
+                </div>
+                <div class="lists-wrappers">
+                <!-- <div class="color-wrapper"> -->
+                    <div class="dropdown color-wrapper">
+                        <button class="dropbtn">Color</button>
+                        <div class="dropdown-content">
+                            <a name="color" value="Red">Red</a>
+                            <a name="color" value="Blue">Blue</a>
+                            <a name="color" value="Yellow">Yellow</a>
+                            <a name="color" value="Green">Green</a>
+                            <a name="color" value="Black">Black</a>
+                            <a name="color" value="White" selected>White</a>
+                        </div>
+                    </div>
 
-            <br/>
-            <h4>Mark Your Hobbies</h4>
-            <input onClick="return KeepCount()" id="1" class="hobbies checkbox" type="checkbox" value="Reading" name="reading">Reading</input>
-            <input onClick="return KeepCount()" id="2" class="hobbies checkbox" type="checkbox" value="Writing" name="writing">Writing</input>
-            <input onClick="return KeepCount()" id="3" class="hobbies checkbox" type="checkbox" value="Coding" name="coding">Coding</input>
-            <input onClick="return KeepCount()" id="4" class="hobbies checkbox" type="checkbox" value="Filmmaking" name="filmmaking">Filmmaking</input>
-            <input onClick="return KeepCount()" id="5" class="hobbies checkbox" type="checkbox" value="Skiing" name="skiing">Skiing</input>
-            <input onClick="return KeepCount()" id="6" class="hobbies checkbox" type="checkbox" value="Swimming" name="swimming">Swimming</input>
-            
-            
-            <br/>
-            <h4>Your Favorite Color</h4>
-            <!-- This needs to be a multi select list -->
-            <select id="colorList" onchange="getColorFunction()" required>
-                    <option name="color" value="Red">Red</option>
-                    <option name="color" value="Blue">Blue</option>
-                    <option name="color" value="Yellow">Yellow</option>
-                    <option name="color" value="Green">Green</option>
-                    <option name="color" value="Black">Black</option>
-                    <option name="color" value="White" selected>White</option>
-            </select>
-                <div id="colorBackG"></div>
+                    <!-- <label>Your Favorite Color</label>
+                    <select class="colors-dropdown" id="colorList" onchange="getColorFunction()" required>
+                        <option name="color" value="Red">Red</option>
+                        <option name="color" value="Blue">Blue</option>
+                        <option name="color" value="Yellow">Yellow</option>
+                        <option name="color" value="Green">Green</option>
+                        <option name="color" value="Black">Black</option>
+                        <option name="color" value="White" selected>White</option>
+                    </select> -->
+                <!-- </div> -->
+
+                <!-- <div>
+                    <label>The Countries you'd Like to Visit</label>
+                    <select name="countries" id="mySelectCountries" multiple>
+                        <option value="France" >France</option>
+                        <option value="Spain" >Spain</option>
+                        <option value="Sweden">Sweden</option>
+                        <option value="Swizerland" >Swizerland</option>
+                        <option value="Finland" >Finland</option>
+                    </select>
+                </div> -->
+
+                <div class="scrollmenu">
+                    <a href="#home">Finland</a>
+                    <a href="#news">Swizerland</a>
+                    <a href="#contact">Sweden</a>
+                    <a href="#about">Spain</a>
+                    <a href="#home">France</a>
+                    <a href="#news">Canada</a>
+                </div>
+                </div>
                 
-                <h4>The Countries you'd Like to Visit</h4>
-                <select name="countries" id="mySelectCountries" multiple>
-                    <option value="France" >France</option>
-                    <option value="Spain" >Spain</option>
-                    <option value="Sweden">Sweden</option>
-                    <option value="Swizerland" >Swizerland</option>
-                    <option value="Finland" >Finland</option>
-                </select>
-                <br/>
-                <h4>Something Else You Want to Tell Us?</h4>
-                <textarea onblur="alertFunc()" onkeyup="charsCounter()" id="textInput" minlength="30" maxlength="140"required></textarea>
-                <span id="insChars" style="background-color: red">140</span>
-                <br/>
-                <!-- <button onclick="getSelHobbies(), getSelCountries(), saveData()">Save Form</button> -->
-                <input type="submit" value="submit" onclick="getSelHobbies(), getSelCountries(), saveData()">
+                <div class="textarea-wrapper">
+                    <label class="textarea-label">Something Else You Want to Tell Us?</label>
+                    <textarea onblur="alertFunc()" onkeyup="charsCounter()" id="textInput" minlength="30" maxlength="140"required></textarea>
+                    <span class="textarea-span" id="insChars">140</span>
+                </div>
             </form>
-            <table id="myTable">
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>DofBirth</th>
-                    <th>Salary</th>
-                    <th>Gender</th>
-                    <th>Hobbies</th>
-                    <th>Color</th>
-                    <th>Countries</th>
-                    <th>Additional Text</th>
-                </tr>
-            </table>
-            <script src="indexFinal.js">dsjkfnsd</script>
-        </body>
-        </html>
+            <input class="button" type="submit" value="Submit" onclick="getSelHobbies(), getSelCountries(), saveData()">
+        </div>
+        <table id="myTable">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>DofBirth</th>
+                <th>Salary</th>
+                <th>Gender</th>
+                <th>Hobbies</th>
+                <th>Color</th>
+                <th>Countries</th>
+                <th>Additional Text</th>
+            </tr>
+        </table>
+        <script src="indexFinal.js"></script>
+    </body>
+</html>
