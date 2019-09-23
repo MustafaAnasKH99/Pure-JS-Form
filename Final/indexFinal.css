@@ -1,13 +1,7 @@
-/* body{
-    background-color: rosybrown;
-    padding: 7px;
-} */
-
 form{
     background-color: #ffffff;
     box-sizing: border-box;
     padding: 50px;
-    /* width: 700px; */
 }
 
 input{
@@ -24,14 +18,10 @@ input:focus{
 }
 
 .main-wrapper{
-    /* display: grid;
-    grid-template-columns: 700px ;
-    grid-template-rows: 50px 1fr 20px 50px;   */
     width: 700px;
     display: flex;
     flex-flow: row wrap;
     margin: 0 auto;
-    /* flex-flow: column nowrap; */
 }
 
 .form-title{
@@ -43,21 +33,10 @@ input:focus{
 }
 
 body{
-    /* background-color: rgba(255, 255, 255, 0.192); */
     background-color: #eef0f0;
     box-sizing: border-box;
     margin: 0;
-    /* padding: 0 300px 0 300px;  */
 }
-
-/* .form-wrapper{
-    padding: 50px;
-    margin: 0 auto;
-    display: flex;
-    flex-flow: row wrap;
-    width: 60%;
-    align-content: space-around;
-} */
 
 form{
     display: grid;
@@ -65,13 +44,6 @@ form{
     grid-gap: 16px;
 }
 
-/* label{
-    grid-column: 1 / 2;
-}
-
-input{
-    grid-column: 2 / 3;
-} */
 .text-field{
     width: 160px;
     border-radius: 5px;
@@ -130,7 +102,6 @@ input[type=radio]{
      outline: none;
 }
 input[type=radio]:checked::before{
-     /* position: absolute; */
      font: 13px/1 'Open Sans', sans-serif;
      left: 11px;
      top: 7px;
@@ -153,24 +124,17 @@ label {
 }
 
 .radios-wrapper{
-    /* background-color: red; */
     display: flex;
     flex-flow: row wrap;
 }
 
 .gender-wrapper{
     display: grid;
-    /* grid-auto-flow: column; */
-    /* grid-template-columns: 1fr 1fr; */
-    /* flex-flow: column wrap; */
-    /* justify-content: space-between; */
-    /* background-color: blue; */
     grid-template-columns: 1fr;
     grid-template-rows: 70px 1fr;
 }
 
 .gender-label{
-    /* font-size: 30px; */
     border: 0;  
     margin: 0;
 }
@@ -191,10 +155,6 @@ label {
 }
 
 .color-wrapper{
-    /* display: flex;
-    flex-direction: column;
-    
-    width: 100%; */
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 2fr;
@@ -223,14 +183,12 @@ label {
     width: 300px;
   }
   
-  /* The container <div> - needed to position the dropdown content */
   .dropdown {
     position: relative;
     display: inline-block;
     margin: 0 auto;
   }
   
-  /* Dropdown Content (Hidden by Default) */
   .dropdown-content {
     display: none;
     position: absolute;
@@ -240,7 +198,6 @@ label {
     z-index: 1;
   }
   
-  /* Links inside the dropdown */
   .dropdown-content a {
     color: black;
     padding: 12px 16px;
@@ -248,13 +205,10 @@ label {
     display: block;
   }
   
-  /* Change color of dropdown links on hover */
   .dropdown-content a:hover {background-color: #ddd;}
   
-  /* Show the dropdown menu on hover */
   .dropdown:hover .dropdown-content {display: block;}
   
-  /* Change the background color of the dropdown button when the dropdown content is shown */
   .dropdown:hover .dropbtn {background-color: #3e8e41;}
 
 
@@ -330,5 +284,4 @@ label {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     cursor: pointer;
-    /* align-items: center; */
 } 
