@@ -1,2 +1,2 @@
-# Pure-JS-Form
-A form done purely with JavaScript and HTML
+# Form
+A form done with plain HTML/CSS (Javascript is to be added soon)
