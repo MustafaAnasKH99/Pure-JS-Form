@@ -55,10 +55,35 @@ const fetchData = () => {
             tr.appendChild(td1)
             tr.appendChild(td2)
             tr.appendChild(td3)
+
+            tr.addEventListener('click', (e) => {
+                console.log(e.target.firstChild.data)
+                console.log('ANYTHING??')
+                deleteFunction(e.target.firstChild.data)
+            })
+
             table.appendChild(tr)
         });
     }
     return;
+}
+
+const deleteFunction = (val) => {
+    let fetchedDtata = JSON.parse(data);
+    let finalData = []
+    fetchedDtata.forEach(e => {
+        console.log(e)
+        console.log(e)
+        if (e.fName === val || e.lName === val || e.DoB === val){
+            console.log('this is it')
+        } else {
+            finalData.push(e)
+        }
+    })
+    dataFinal = JSON.stringify(finalData)
+    localStorage.setItem('data', dataFinal)
+
+    location.reload()
 }
 
 fetchData()
