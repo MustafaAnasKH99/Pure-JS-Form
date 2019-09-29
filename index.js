@@ -20,18 +20,11 @@ const saveData = () => {
     } else {
         let data = localStorage.getItem('data')
         let finalData = JSON.parse(data)
-        console.log('finalData')
-        console.log(finalData)
-        // fetchedData.push(finalData[0])
         fetchedData = [...finalData];
         fetchedData.push(values)
-        console.log('fetchedData')
-        console.log(fetchedData)
         let pushFinalData = JSON.stringify(fetchedData)
         localStorage.setItem('data', pushFinalData)
     }
-
-    location.reload()
 }
 
 const fetchData = () => {
@@ -55,13 +48,11 @@ const fetchData = () => {
             tr.appendChild(td1)
             tr.appendChild(td2)
             tr.appendChild(td3)
-
+            let randomClassName =  Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+            tr.classList.add(randomClassName);
             tr.addEventListener('click', (e) => {
-                console.log(e.target.firstChild.data)
-                console.log('ANYTHING??')
-                deleteFunction(e.target.firstChild.data)
+                deleteFunction(e.target)
             })
-
             table.appendChild(tr)
         });
     }
@@ -72,9 +63,7 @@ const deleteFunction = (val) => {
     let fetchedDtata = JSON.parse(data);
     let finalData = []
     fetchedDtata.forEach(e => {
-        console.log(e)
-        console.log(e)
-        if (e.fName === val || e.lName === val || e.DoB === val){
+        if (e.fName === val.firstChild.data || e.lName === val.firstChild.data || e.DoB === val.firstChild.data){
             console.log('this is it')
         } else {
             finalData.push(e)
@@ -83,7 +72,9 @@ const deleteFunction = (val) => {
     dataFinal = JSON.stringify(finalData)
     localStorage.setItem('data', dataFinal)
 
-    location.reload()
+    let class_name = val.parentElement.className
+    node_to_delete = document.getElementsByClassName(class_name)
+    node_to_delete[0].parentElement.removeChild(node_to_delete[0])
 }
 
 fetchData()
