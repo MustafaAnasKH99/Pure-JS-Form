@@ -14,16 +14,54 @@ const saveData = () => {
     }
 
     if(data === null){
+        // Save new data to the localStorage
+
         fetchedData.push(values)
         dataFinal = JSON.stringify(fetchedData)
         localStorage.setItem('data', dataFinal)
+
+        // Save new data to the dom
+        
+        let tr = document.createElement('tr')
+        let td1 = document.createElement('td');
+        let txt1 = document.createTextNode(values.fName)
+        td1.appendChild(txt1)
+        tr.appendChild(td1)
+        let td2 = document.createElement('td');
+        let txt2 = document.createTextNode(values.lName)
+        td2.appendChild(txt2)
+        tr.appendChild(td2)
+        let td3 = document.createElement('td');
+        let txt3 = document.createTextNode(values.DoB)
+        td3.appendChild(txt3)
+        tr.appendChild(td3)
+        table.appendChild(tr)
     } else {
+        // Save new data to the localStorage
+
         let data = localStorage.getItem('data')
         let finalData = JSON.parse(data)
         fetchedData = [...finalData];
         fetchedData.push(values)
         let pushFinalData = JSON.stringify(fetchedData)
         localStorage.setItem('data', pushFinalData)
+
+        // Save new data to the dom
+
+        let tr = document.createElement('tr')
+        let td1 = document.createElement('td');
+        let txt1 = document.createTextNode(values.fName)
+        td1.appendChild(txt1)
+        tr.appendChild(td1)
+        let td2 = document.createElement('td');
+        let txt2 = document.createTextNode(values.lName)
+        td2.appendChild(txt2)
+        tr.appendChild(td2)
+        let td3 = document.createElement('td');
+        let txt3 = document.createTextNode(values.DoB)
+        td3.appendChild(txt3)
+        tr.appendChild(td3)
+        table.appendChild(tr)
     }
 }
 
